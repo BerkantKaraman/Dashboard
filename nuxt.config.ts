@@ -7,7 +7,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules:[
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts', 
+    '@nuxt/image'
   ],
 
   css: [
