@@ -22,7 +22,7 @@
         class="mb-2 rounded-lg"
       >
         <template v-slot:prepend>
-          <v-icon size="large" color="5B5B5B" :icon="menuItem.icon" />
+          <v-icon size="large" :icon="menuItem.icon" />
         </template>
       </v-list-item>
     </v-list>

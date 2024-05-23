@@ -6,8 +6,7 @@
     <template v-slot:default="{ isActive }">
       <v-card width="100%" height="100%" class="py-4 pa-4">
         <v-card-title
-          class="d-flex justify-space-between align-center"
-          style="word-break: break-word"
+          class="d-flex justify-space-between align-center text-color"
         >
           Please enter the team's information
           <v-btn

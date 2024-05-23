@@ -5,8 +5,10 @@
     </template>
     <template v-slot:default="{ isActive }">
       <v-card width="100%" height="100%" class="pa-6">
-        <v-card-title class="d-flex justify-space-between align-center pa-4">
-          <div>Please enter the employee's information</div>
+        <v-card-title
+          class="d-flex justify-space-between align-center pa-4 text-color"
+        >
+          Please enter the employee's information
           <v-btn
             elevation="0"
             icon="mdi-close"
