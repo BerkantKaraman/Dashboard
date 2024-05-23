@@ -6,12 +6,21 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
+  modules:[
+    '@nuxtjs/google-fonts'
+  ],
+
   css: [
     'vuetify/styles',
     'vuetify/lib/styles/main.sass',
     '~/assets/scss/app.scss',
-    '~/assets/fonts/poppins.css'
   ],
+
+  googleFonts: {
+    families: {
+      Poppins: true, 
+    },
+  },
 
   build: {
     transpile: ['vuetify'],
