@@ -19,7 +19,8 @@ export default defineNuxtConfig({
     },
 
     '@nuxtjs/google-fonts', 
-    '@nuxt/image'
+    '@nuxt/image',
+    '@pinia/nuxt'
   ],
 
   css: [
