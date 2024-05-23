@@ -15,3 +15,7 @@ body {
 .container {
   padding: 0;
 }
+
+.v-toast {
+  z-index: 999999999 !important;
+}
