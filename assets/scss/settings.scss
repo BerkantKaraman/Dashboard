@@ -1,0 +1,5 @@
+@use "vuetify/settings" with (
+  $button-text-transform: "text-transform",
+  $button-color: #467c65,
+  $button-background: #edf6f2
+);
