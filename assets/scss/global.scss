@@ -8,7 +8,7 @@ body {
   margin: 0;
   scroll-behavior: smooth;
   font-family: $font-family-sans-serif;
-  background: #f7f9f9;
+  background: $background-color;
   height: 100%;
 }
 
@@ -16,6 +16,12 @@ body {
   padding: 0;
 }
 
-.v-toast {
-  z-index: 999999999 !important;
+.text-color {
+  color: var(--text-color) !important;
+}
+
+.page-header {
+  color: var(--text-color) !important;
+  font-weight: 500;
+  font-size: 40px;
 }

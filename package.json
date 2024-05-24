@@ -14,18 +14,20 @@
     "@nuxt/image": "^1.7.0",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@pinia/nuxt": "^0.5.1",
+    "apexcharts": "^3.47.0",
     "axios": "^1.7.2",
     "moment": "^2.30.1",
     "nuxt": "^3.11.2",
     "pinia": "^2.1.7",
     "sass-loader": "^14.2.1",
+    "vite-plugin-vuetify": "^2.0.3",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2",
-    "vue-toast-notification": "^3.1.2"
+    "vue3-apexcharts": "^1.5.2",
+    "vue3-toastify": "^0.2.1"
   },
   "devDependencies": {
     "sass": "^1.77.2",
-    "vite-plugin-vuetify": "^2.0.3",
     "vuetify": "^3.6.6"
   }
 }

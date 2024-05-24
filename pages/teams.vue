@@ -1,14 +1,22 @@
 <template>
-  <div class="teams pa-4">
-    <div class="page-header">Teams</div>
+  <div class="teams pa-8">
+    <div class="header d-flex justify-space-between">
+      <div class="page-header pb-4">Teams</div>
+      <div class="refresh">
+        Last updated at: {{ appStore.lastUpdated }}
+        <div :class="['refresh-icon', { loading }]" @click="refresh">
+          <AppIcon name="refresh" :size="25" />
+        </div>
+      </div>
+    </div>
     <div class="d-flex justify-end py-4">
-      <InputTeamForm :team-payload="teamPayload" />
+      <InputTeamForm />
     </div>
     <v-data-table
       :items="data.teams"
       :headers="[...formattedHeaders, { value: 'actions', align: 'center' }]"
       hide-default-footer
-      class="text-color"
+      class="text-color data-table"
     >
       <template v-slot:item.actions="{ item }">
         <v-btn elevation="0" text="Detail" @click="getDetails(item)" />
@@ -24,7 +32,7 @@
         <v-card-text class="text-color">{{ description }}</v-card-text>
         <div class="d-flex align-center justify-space-between">
           <v-card-title> Employees </v-card-title>
-          <InputEmployeeForm :employee-payload="employeePayload" />
+          <InputEmployeeForm />
         </div>
         <v-card-text>
           <v-data-table
@@ -52,10 +60,12 @@
 
 <script setup>
 import { useAppStore } from "~/store/app";
-import startCase from "lodash/startCase";
 import upperFirst from "lodash/upperFirst";
+import generateHeader from "~/utils/generateHeader";
 
 const appStore = useAppStore();
+
+await useAsyncData("teams", async () => await appStore.fetchData());
 
 const data = appStore.payload;
 
@@ -63,69 +73,24 @@ const isOpen = ref(false);
 const employees = ref([]);
 const description = ref("");
 const title = ref("");
+const loading = ref(false);
 
-const employeePayload = ref({
-  first_name: "",
-  last_name: "",
-  email: "",
-  title: "",
+const formattedHeaders = generateHeader({
+  guideData: data.teams[0],
+  order: ["title", "total_employee_count", "overall_score"],
+  filter: ["employees", "description"],
 });
 
-const teamPayload = ref({
-  description: "",
-  team_title: "",
-});
-
-const formattedHeaders = computed(() => {
-  if (!data || data.teams.length === 0) return [];
-
-  return Object.keys(data.teams[0])
-    .map((key) => {
-      const header = {
-        value: key,
-        title: startCase(key),
-      };
-      if (key === "overall_score" || key === "total_employee_count") {
-        header.nowrap = true;
-        header.align = "center";
-      }
-      return header;
-    })
-    .filter((x) => {
-      return !["employees", "description"].includes(x.value);
-    })
-    .sort((a, b) => {
-      const order = ["title", "total_employee_count", "overall_score"];
-      return order.indexOf(a.value) - order.indexOf(b.value);
-    });
-});
-
-const employeeHeaders = computed(() => {
-  if (!data || data.teams.length === 0) return [];
-
-  return Object.keys(data.teams[0].employees[0])
-    .map((key) => {
-      const header = {
-        value: key,
-        title: startCase(key),
-      };
-      if (key === "current_score" || key === "lessons_taken") {
-        header.nowrap = true;
-        header.align = "center";
-      }
-      return header;
-    })
-    .sort((a, b) => {
-      const order = [
-        "name",
-        "email",
-        "title",
-        "lessons_taken",
-        "skills_being_developed",
-        "current_score",
-      ];
-      return order.indexOf(a.value) - order.indexOf(b.value);
-    });
+const employeeHeaders = generateHeader({
+  guideData: data.teams[0].employees[0],
+  order: [
+    "name",
+    "email",
+    "title",
+    "lessons_taken",
+    "skills_being_developed",
+    "current_score",
+  ],
 });
 
 const getDetails = (item) => {
@@ -134,4 +99,37 @@ const getDetails = (item) => {
   title.value = item.title;
   isOpen.value = true;
 };
+
+const refresh = async () => {
+  loading.value = true;
+  await appStore.fetchData(true);
+  loading.value = false;
+};
 </script>
+
+<style lang="scss" scoped>
+.refresh {
+  @include center-both;
+  gap: 20px;
+  font-size: 14px;
+  color: $text-color;
+
+  &-icon {
+    @include center-both;
+    background-color: $text-background;
+    min-width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+
+  &-icon.loading {
+    animation: rotate 2s linear infinite;
+  }
+}
+
+.data-table {
+  border-radius: 4px;
+  border: 1px solid $muted-color;
+}
+</style>

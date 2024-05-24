@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer class="px-7 pt-7">
+  <v-navigation-drawer :width="256" class="px-7 pt-7" permanent>
     <v-list density="comfortable" class="pb-6">
       <v-list-item>
         <template v-slot:prepend>

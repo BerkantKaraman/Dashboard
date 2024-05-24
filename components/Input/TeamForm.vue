@@ -17,11 +17,19 @@
         </v-card-title>
         <v-form variant="outlined" width="100%" height="100%" class="pa-4">
           <v-row>
-            <v-col v-for="(field, idx) in teamForm" :key="idx" cols="12">
+            <v-col cols="12">
               <v-text-field
-                v-model="tempPayload[field.key]"
-                :rules="[rules[field.key]]"
-                :label="field.placeholder"
+                v-model="teamPayload.team_title"
+                :rules="[rules.team_title]"
+                label="Team Title"
+                required
+                color="primary"
+                variant="outlined"
+              />
+              <v-textarea
+                v-model="teamPayload.description"
+                :rules="[rules.description]"
+                label="Team Description"
                 required
                 color="primary"
                 variant="outlined"
@@ -45,21 +53,16 @@
 </template>
 
 <script setup>
-import teamForm from "~/includes/form/teamForm";
-import { useToast } from "vue-toast-notification";
-
-const props = defineProps({
-  teamPayload: {
-    type: Object,
-    default: () => {},
-  },
-});
-
-const toast = useToast();
+import { toast } from "vue3-toastify";
+import resetObjectValues from "~/utils/resetObject";
 
 const loading = ref(false);
 const isOpen = ref(false);
-const tempPayload = ref(props.teamPayload);
+
+const teamPayload = ref({
+  description: "",
+  team_title: "",
+});
 
 const rules = {
   description: (value) => {
@@ -72,8 +75,8 @@ const rules = {
 
 const hasError = computed(() => {
   return (
-    rules.description(props.teamPayload.description) !== true ||
-    rules.team_title(props.teamPayload.team_title) !== true
+    rules.description(teamPayload.value.description) !== true ||
+    rules.team_title(teamPayload.value.team_title) !== true
   );
 });
 
@@ -81,14 +84,13 @@ const handleAdd = () => {
   loading.value = true;
   setTimeout(() => {
     loading.value = false;
-    isOpen.value = false;
-    toast.open({
-      message: "Team created",
+    toast.success("toastify success", {
+      theme: "colored",
       type: "success",
-      position: "top",
     });
 
-    tempPayload.value = {};
+    teamPayload.value = resetObjectValues(teamPayload.value);
+    isOpen.value = false;
   }, 1000);
 };
 </script>

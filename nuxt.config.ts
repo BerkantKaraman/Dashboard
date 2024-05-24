@@ -1,51 +1,58 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
   ssr: true,
 
+  sourcemap: {
+    server: false,
+    client: false,
+  },
+
   devtools: { enabled: true },
 
-  modules:[
+  modules: [
     (_options, nuxt) => {
-      nuxt.hooks.hook('vite:extendConfig', (config) => {
+      nuxt.hooks.hook("vite:extendConfig", (config) => {
         // @ts-expect-error
-        config.plugins.push(vuetify({ autoImport: true,          
-          styles: {
-          configFile: './assets/scss/settings.scss',
-        },
-       }))
-      })
+        config.plugins.push(
+          vuetify({
+            autoImport: true,
+            styles: {
+              configFile: "./assets/scss/settings.scss",
+            },
+          })
+        );
+      });
     },
-
-    '@nuxtjs/google-fonts', 
-    '@nuxt/image',
-    '@pinia/nuxt'
+    "@nuxtjs/google-fonts",
+    "@nuxt/image",
+    "@pinia/nuxt",
   ],
 
   css: [
-    'vuetify/styles',
-    'vuetify/lib/styles/main.sass',
-    '~/assets/scss/app.scss',
+    "vuetify/styles",
+    "vuetify/lib/styles/main.sass",
+    "~/assets/scss/app.scss",
   ],
 
   googleFonts: {
     families: {
-      Poppins: [100, 200, 300, 400, 500, 600, 700, 800, 900], 
+      Poppins: [100, 200, 300, 400, 500, 600, 700, 800, 900],
     },
   },
 
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' }
+    pageTransition: { name: "page", mode: "out-in" },
   },
 
   build: {
-    transpile: ['vuetify'],
+    transpile: ["vuetify"],
   },
 
   vite: {
     ssr: {
-      noExternal: ['vuetify'],
+      noExternal: ["vuetify"],
     },
     vue: {
       template: {
@@ -61,4 +68,4 @@ export default defineNuxtConfig({
       },
     },
   },
-})
+});

@@ -1,26 +1,14 @@
+// base
+
 $primary: var(--primary);
-
 $text-color: var(--text-color);
-
 $muted-color: #cccccc;
-
 $text-background: #edf6f2;
-
 $background-color: #fbfbfb;
-
+$white: #fff;
 $font-family-sans-serif: "Poppins", sans-serif;
 
 :root {
   --primary: #0c615e;
   --text-color: #343434;
-}
-
-.text-color {
-  color: var(--text-color) !important;
-}
-
-.page-header {
-  color: var(--text-color) !important;
-  font-weight: 500;
-  font-size: 40px;
 }

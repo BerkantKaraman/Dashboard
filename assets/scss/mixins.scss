@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+@mixin space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @mixin devices($breakpoint) {
   @if $breakpoint == laptop {
     @media only screen and (max-width: 1200px) {

@@ -4,13 +4,6 @@
   </NuxtLayout>
 </template>
 
-<script setup>
-import { useAppStore } from "~/store/app";
-const appStore = useAppStore();
-
-await useAsyncData("app", async () => await appStore.fetchData());
-</script>
-
 <style>
 .page-enter-active,
 .page-leave-active {

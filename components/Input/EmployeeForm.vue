@@ -24,7 +24,7 @@
               md="6"
             >
               <v-text-field
-                v-model="tempPayload[field.key]"
+                v-model="teamPayload[field.key]"
                 :rules="[rules[field.key]]"
                 :label="field.placeholder"
                 required
@@ -50,23 +50,21 @@
 </template>
 
 <script setup>
-import { useToast } from "vue-toast-notification";
+import { toast } from "vue3-toastify";
 import employeeForm from "~/includes/form/employeeForm";
-
-const props = defineProps({
-  employeePayload: {
-    type: Object,
-    default: () => {},
-  },
-});
-
-const toast = useToast();
+import resetObjectValues from "~/utils/resetObject";
 
 const loading = ref(false);
 const isOpen = ref(false);
-const tempPayload = ref(props.employeePayload);
 
-const nameRegex = /^[A-Za-z\s]+$/;
+const teamPayload = ref({
+  first_name: "",
+  last_name: "",
+  email: "",
+  title: "",
+});
+
+const nameRegex = /^[A-Za-z\süöçşığÜÖÇŞİĞ]+$/;
 const emailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -91,10 +89,10 @@ const rules = {
 
 const hasError = computed(() => {
   return (
-    rules.first_name(props.employeePayload.first_name) !== true ||
-    rules.last_name(props.employeePayload.last_name) !== true ||
-    rules.email(props.employeePayload.email) !== true ||
-    rules.title(props.employeePayload.title) !== true
+    rules.first_name(teamPayload.value.first_name) !== true ||
+    rules.last_name(teamPayload.value.last_name) !== true ||
+    rules.email(teamPayload.value.email) !== true ||
+    rules.title(teamPayload.value.title) !== true
   );
 });
 
@@ -103,13 +101,12 @@ const handleAdd = () => {
   setTimeout(() => {
     loading.value = false;
     isOpen.value = false;
-    toast.open({
-      message: "Employee added to team",
+    toast.success("toastify success", {
+      theme: "colored",
       type: "success",
-      position: "top",
     });
 
-    tempPayload.value = {};
+    teamPayload.value = resetObjectValues(teamPayload.value);
   }, 1000);
 };
 </script>
