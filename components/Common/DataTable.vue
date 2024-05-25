@@ -31,6 +31,7 @@ const props = defineProps({
 const headers = generateHeader({
   guideData: props.tableData[0],
   order: ["skills", "employees"],
+  specialKeys: ["employees"],
 });
 </script>
 
@@ -40,5 +41,11 @@ const headers = generateHeader({
   background-color: $white;
   border: 1px solid $muted-color;
   border-radius: 10px;
+}
+
+th:last-child {
+  @include devices(md) {
+    text-align: center !important;
+  }
 }
 </style>

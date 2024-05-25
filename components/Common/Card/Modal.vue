@@ -1,5 +1,5 @@
 <template>
-  <v-dialog max-width="50%" max-height="100%">
+  <v-dialog :max-width="width" max-height="100%">
     <template v-slot:activator="{ props: activatorProps }">
       <div class="view-detail" v-bind="activatorProps">
         <div class="view-detail-text">View detail</div>
@@ -26,11 +26,19 @@
 </template>
 
 <script setup>
+import { useDisplay } from "vuetify";
+
 const props = defineProps({
   title: {
     type: String,
     default: "",
   },
+});
+
+const { name } = useDisplay();
+
+const width = computed(() => {
+  return ["xs", "sm", "md"].includes(name.value) ? "100%" : "50%";
 });
 </script>
 

@@ -9,3 +9,47 @@
   justify-content: space-between;
   align-items: center;
 }
+
+@mixin devices($breakpoint) {
+  @if $breakpoint == xxl {
+    @media only screen and (max-width: 1600px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == xl {
+    @media only screen and (max-width: 1200px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == lg {
+    @media only screen and (max-width: 992px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == md {
+    @media only screen and (max-width: 768px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == sm {
+    @media only screen and (max-width: 576px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == ssm {
+    @media only screen and (max-width: 415px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == xs {
+    @media only screen and (max-width: 300px) {
+      @content;
+    }
+  }
+}

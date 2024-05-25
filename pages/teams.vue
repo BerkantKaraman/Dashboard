@@ -1,6 +1,6 @@
 <template>
-  <div class="teams pa-8">
-    <div class="header d-flex justify-space-between">
+  <div class="teams">
+    <div class="header">
       <div class="page-header pb-4">Teams</div>
       <div class="refresh">
         Last updated at: {{ appStore.lastUpdatedAt }}
@@ -49,7 +49,7 @@
                 :key="idx"
                 bg-color="textBackground"
                 color="primary"
-                class="ml-2"
+                class="ml-2 my-2"
               >
                 {{ skill }}
               </v-chip>
@@ -121,28 +121,41 @@ const refresh = async () => {
 </script>
 
 <style lang="scss" scoped>
-.refresh {
-  @include center-both;
-  gap: 20px;
-  font-size: 14px;
-  color: $text-color;
+.teams {
+  padding: 16px 16px;
 
-  &-icon {
+  .header {
+    @include space-between;
+
+    @include devices(sm) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .refresh {
     @include center-both;
-    background-color: $text-background;
-    min-width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    cursor: pointer;
+    gap: 20px;
+    font-size: 14px;
+    color: $text-color;
+
+    &-icon {
+      @include center-both;
+      background-color: $text-background;
+      min-width: 40px;
+      height: 40px;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+
+    &-icon.loading {
+      animation: rotate 2s linear infinite;
+    }
   }
 
-  &-icon.loading {
-    animation: rotate 2s linear infinite;
+  .data-table {
+    border-radius: 4px;
+    border: 1px solid $muted-color;
   }
-}
-
-.data-table {
-  border-radius: 4px;
-  border: 1px solid $muted-color;
 }
 </style>

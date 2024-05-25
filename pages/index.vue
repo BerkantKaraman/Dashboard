@@ -1,6 +1,6 @@
 <template>
-  <div class="dashboard pa-8">
-    <div class="header d-flex justify-space-between">
+  <div class="dashboard">
+    <div class="header">
       <div class="page-header pb-4">Dashboard</div>
       <div class="refresh">
         Last updated at: {{ appStore.lastUpdatedAt }}
@@ -77,6 +77,7 @@ const cardData = ref([
     detail: data.top_employees.length,
     hasDetail: true,
     data: data.top_employees,
+    specialKeys: ["current_score"],
   },
   {
     title: "Top Skills",
@@ -113,41 +114,84 @@ const refresh = async () => {
 </script>
 
 <style lang="scss" scoped>
-.refresh {
-  @include center-both;
-  gap: 20px;
-  font-size: 14px;
-  color: $text-color;
+.dashboard {
+  padding: 16px 16px;
 
-  &-icon {
-    @include center-both;
-    background-color: $text-background;
-    min-width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    cursor: pointer;
+  .header {
+    @include space-between;
+
+    @include devices(sm) {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .refresh {
+      @include center-both;
+      gap: 20px;
+      font-size: 14px;
+      color: $text-color;
+
+      &-icon {
+        @include center-both;
+        background-color: $text-background;
+        min-width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        cursor: pointer;
+      }
+
+      &-icon.loading {
+        animation: rotate 2s linear infinite;
+      }
+    }
   }
 
-  &-icon.loading {
-    animation: rotate 2s linear infinite;
+  .main {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 1rem;
+
+    @include devices(md) {
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
-}
 
-.main {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 1rem;
-}
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 15px;
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 15px;
-}
+    @include devices(md) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
 
-.card {
-  margin-top: 18px;
+  .card {
+    margin-top: 18px;
+
+    @include devices(md) {
+      margin-top: 0;
+    }
+  }
+
+  .left {
+    @include devices(md) {
+      width: 100%;
+    }
+  }
+
+  .right {
+    @include devices(md) {
+      display: flex;
+      flex-direction: column-reverse;
+      width: 100%;
+      gap: 1rem;
+    }
+  }
 }
 </style>

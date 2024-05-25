@@ -1,5 +1,5 @@
 <template>
-  <v-dialog max-width="40%" v-model="isOpen">
+  <v-dialog :max-width="width" v-model="isOpen">
     <template v-slot:activator="{ props: activatorProps }">
       <v-btn elevation="0" text="Add New Employee" v-bind="activatorProps" />
     </template>
@@ -51,12 +51,19 @@
 import { toast } from "vue3-toastify";
 import employeeForm from "~/includes/form/employeeForm";
 import resetObjectValues from "~/utils/resetObject";
+import { useDisplay } from "vuetify";
 
 const props = defineProps({
   teamName: {
     type: String,
     default: "",
   },
+});
+
+const { name } = useDisplay();
+
+const width = computed(() => {
+  return ["xs", "sm", "md"].includes(name.value) ? "100%" : "40%";
 });
 
 const loading = ref(false);
@@ -120,9 +127,10 @@ const handleAdd = () => {
 </script>
 
 <style lang="scss" scoped>
-.v-card-title {
+:deep(.v-card-title) {
   color: $text-color;
   @include space-between;
   font-size: 16px;
+  text-wrap: wrap !important;
 }
 </style>
