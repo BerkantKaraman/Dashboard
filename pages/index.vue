@@ -1,34 +1,36 @@
 <template>
-  <div class="dashboard">
-    <div class="header">
-      <div class="page-header pb-4">Dashboard</div>
-      <div class="refresh">
-        Last updated at: {{ appStore.lastUpdatedAt }}
-        <v-icon
-          icon="mdi-refresh"
-          color="primary"
-          :class="['refresh-icon', { loading }]"
-          @click="refresh"
-        />
-      </div>
-    </div>
-    <div class="main">
-      <div class="left">
-        <ChartLine :chart-options="chartOptions" :chartData="chartData" />
-        <div class="cards">
-          <CommonCard
-            v-for="(item, idx) in cardData.slice(0, -1)"
-            :key="idx"
-            v-bind="item"
+  <AppContainer>
+    <div class="dashboard">
+      <div class="header">
+        <div class="page-header pb-4">Dashboard</div>
+        <div class="refresh">
+          Last updated at: {{ appStore.lastUpdatedAt }}
+          <v-icon
+            icon="mdi-refresh"
+            color="primary"
+            :class="['refresh-icon', { loading }]"
+            @click="refresh"
           />
         </div>
       </div>
-      <div class="right">
-        <CommonDataTable :table-data="data.skills_in_development" />
-        <CommonCard v-bind="cardData[cardData.length - 1]" class="card" />
+      <div class="main">
+        <div class="left">
+          <ChartLine :chart-options="chartOptions" :chartData="chartData" />
+          <div class="cards">
+            <CommonCard
+              v-for="(item, idx) in cardData.slice(0, -1)"
+              :key="idx"
+              v-bind="item"
+            />
+          </div>
+        </div>
+        <div class="right">
+          <CommonDataTable :table-data="data.skills_in_development" />
+          <CommonCard v-bind="cardData[cardData.length - 1]" class="card" />
+        </div>
       </div>
     </div>
-  </div>
+  </AppContainer>
 </template>
 
 <script setup>
@@ -115,7 +117,7 @@ const refresh = async () => {
 
 <style lang="scss" scoped>
 .dashboard {
-  padding: 0 16px 16px 16px;
+  padding: 32px 16px 16px 16px;
 
   .header {
     @include space-between;

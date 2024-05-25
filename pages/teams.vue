@@ -1,64 +1,66 @@
 <template>
-  <div class="teams">
-    <div class="header">
-      <div class="page-header pb-4">Teams</div>
-      <div class="refresh">
-        Last updated at: {{ appStore.lastUpdatedAt }}
-        <v-icon
-          icon="mdi-refresh"
-          color="primary"
-          :class="['refresh-icon', { loading }]"
-          @click="refresh"
-        />
-      </div>
-    </div>
-    <div class="d-flex justify-end py-4">
-      <InputTeamForm />
-    </div>
-    <v-data-table
-      :items="data.teams"
-      :headers="teamHeaders"
-      hide-default-footer
-      class="text-color data-table"
-    >
-      <template v-slot:[`item.actions`]="{ item }">
-        <v-btn elevation="0" text="Detail" @click="getDetails(item)" />
-      </template>
-    </v-data-table>
-    <v-dialog fullscreen hide-overlay v-model="isOpen">
-      <v-card class="pa-4">
-        <v-card-title class="d-flex justify-end">
-          <v-btn elevation="0" icon="mdi-close" @click="isOpen = false" />
-        </v-card-title>
-        <v-card-title class="text-color"> {{ title }}: </v-card-title>
-        <v-card-text class="text-color">{{ description }}</v-card-text>
-        <div class="d-flex align-center justify-space-between">
-          <v-card-title> Employees </v-card-title>
-          <InputEmployeeForm :team-name="title" />
+  <AppContainer>
+    <div class="teams">
+      <div class="header">
+        <div class="page-header pb-4">Teams</div>
+        <div class="refresh">
+          Last updated at: {{ appStore.lastUpdatedAt }}
+          <v-icon
+            icon="mdi-refresh"
+            color="primary"
+            :class="['refresh-icon', { loading }]"
+            @click="refresh"
+          />
         </div>
-        <v-card-text>
-          <v-data-table
-            :items="employees"
-            :headers="employeeHeaders"
-            hide-default-footer
-            class="text-color"
-          >
-            <template v-slot:item.skills_being_developed="{ item }">
-              <v-chip
-                v-for="(skill, idx) in item.skills_being_developed"
-                :key="idx"
-                bg-color="textBackground"
-                color="primary"
-                class="ml-2 my-2"
-              >
-                {{ skill }}
-              </v-chip>
-            </template>
-          </v-data-table>
-        </v-card-text>
-      </v-card>
-    </v-dialog>
-  </div>
+      </div>
+      <div class="d-flex justify-end py-4">
+        <InputTeamForm />
+      </div>
+      <v-data-table
+        :items="data.teams"
+        :headers="teamHeaders"
+        hide-default-footer
+        class="text-color data-table"
+      >
+        <template v-slot:[`item.actions`]="{ item }">
+          <v-btn elevation="0" text="Detail" @click="getDetails(item)" />
+        </template>
+      </v-data-table>
+      <v-dialog fullscreen hide-overlay v-model="isOpen">
+        <v-card class="pa-4">
+          <v-card-title class="d-flex justify-end">
+            <v-btn elevation="0" icon="mdi-close" @click="isOpen = false" />
+          </v-card-title>
+          <v-card-title class="text-color"> {{ title }}: </v-card-title>
+          <v-card-text class="text-color">{{ description }}</v-card-text>
+          <div class="d-flex align-center justify-space-between">
+            <v-card-title> Employees </v-card-title>
+            <InputEmployeeForm :team-name="title" />
+          </div>
+          <v-card-text>
+            <v-data-table
+              :items="employees"
+              :headers="employeeHeaders"
+              hide-default-footer
+              class="text-color"
+            >
+              <template v-slot:item.skills_being_developed="{ item }">
+                <v-chip
+                  v-for="(skill, idx) in item.skills_being_developed"
+                  :key="idx"
+                  bg-color="textBackground"
+                  color="primary"
+                  class="ml-2 my-2"
+                >
+                  {{ skill }}
+                </v-chip>
+              </template>
+            </v-data-table>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+    </div>
+  </AppContainer>
 </template>
 
 <script setup>
@@ -122,7 +124,7 @@ const refresh = async () => {
 
 <style lang="scss" scoped>
 .teams {
-  padding: 0 16px 16px 16px;
+  padding: 32px 16px 16px 16px;
 
   .header {
     @include space-between;

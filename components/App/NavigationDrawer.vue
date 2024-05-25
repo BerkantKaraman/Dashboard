@@ -1,15 +1,5 @@
 <template>
-  <v-app-bar prominent elevation="0" color="#FBFBFB">
-    <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer" />
-  </v-app-bar>
-
-  <v-navigation-drawer
-    v-model="drawer"
-    :width="256"
-    temporary
-    class="px-7 pt-7"
-    color="#FBFBFB"
-  >
+  <v-navigation-drawer :width="256" class="px-7 pt-7">
     <v-list density="comfortable" class="pb-6">
       <v-list-item>
         <template v-slot:prepend>
@@ -46,12 +36,4 @@
 
 <script setup>
 import menu from "~/includes/menu";
-
-const drawer = ref(false);
 </script>
-
-<style lang="scss" scoped>
-:deep(.v-app-bar.v-toolbar:not(.v-toolbar--flat)) {
-  box-shadow: none !important;
-}
-</style>
