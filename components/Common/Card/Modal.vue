@@ -39,7 +39,7 @@ const props = defineProps({
   @include space-between;
 }
 
-.view-more {
+.view-detail {
   position: relative;
   @include center-both;
   width: max-content;
