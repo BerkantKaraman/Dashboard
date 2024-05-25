@@ -148,6 +148,6 @@ const refresh = async () => {
 }
 
 .card {
-  margin-top: 19px;
+  margin-top: 18px;
 }
 </style>
