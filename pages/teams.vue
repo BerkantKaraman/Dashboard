@@ -3,10 +3,13 @@
     <div class="header d-flex justify-space-between">
       <div class="page-header pb-4">Teams</div>
       <div class="refresh">
-        Last updated at: {{ appStore.lastUpdated }}
-        <div :class="['refresh-icon', { loading }]" @click="refresh">
-          <AppIcon name="refresh" :size="25" />
-        </div>
+        Last updated at: {{ appStore.lastUpdatedAt }}
+        <v-icon
+          icon="mdi-refresh"
+          color="primary"
+          :class="['refresh-icon', { loading }]"
+          @click="refresh"
+        />
       </div>
     </div>
     <div class="d-flex justify-end py-4">
@@ -14,18 +17,17 @@
     </div>
     <v-data-table
       :items="data.teams"
-      :headers="[...formattedHeaders, { value: 'actions', align: 'center' }]"
+      :headers="teamHeaders"
       hide-default-footer
       class="text-color data-table"
     >
-      <template v-slot:item.actions="{ item }">
+      <template v-slot:[`item.actions`]="{ item }">
         <v-btn elevation="0" text="Detail" @click="getDetails(item)" />
       </template>
     </v-data-table>
     <v-dialog fullscreen hide-overlay v-model="isOpen">
       <v-card class="pa-4">
-        <v-card-title class="d-flex justify-space-between align-center">
-          <div />
+        <v-card-title class="d-flex justify-end">
           <v-btn elevation="0" icon="mdi-close" @click="isOpen = false" />
         </v-card-title>
         <v-card-title class="text-color"> {{ title }}: </v-card-title>
@@ -43,7 +45,8 @@
           >
             <template v-slot:item.skills_being_developed="{ item }">
               <v-chip
-                v-for="skill in item.skills_being_developed"
+                v-for="(skill, idx) in item.skills_being_developed"
+                :key="idx"
                 bg-color="textBackground"
                 color="primary"
                 class="ml-2"
@@ -63,6 +66,10 @@ import { useAppStore } from "~/store/app";
 import upperFirst from "lodash/upperFirst";
 import generateHeader from "~/utils/generateHeader";
 
+useHead({
+  title: "Teams",
+});
+
 const appStore = useAppStore();
 
 await useAsyncData("teams", async () => await appStore.fetchData());
@@ -76,13 +83,18 @@ const title = ref("");
 const loading = ref(false);
 
 const formattedHeaders = generateHeader({
-  guideData: data.teams[0],
+  guideData: data?.teams[0],
   order: ["title", "total_employee_count", "overall_score"],
   filter: ["employees", "description"],
+  specialKeys: ["overall_score", "total_employee_count"],
+});
+
+const teamHeaders = computed(() => {
+  return [...formattedHeaders, { value: "actions", align: "center" }];
 });
 
 const employeeHeaders = generateHeader({
-  guideData: data.teams[0].employees[0],
+  guideData: data?.teams[0]?.employees[0],
   order: [
     "name",
     "email",
@@ -91,6 +103,7 @@ const employeeHeaders = generateHeader({
     "skills_being_developed",
     "current_score",
   ],
+  specialKeys: ["lessons_taken", "current_score"],
 });
 
 const getDetails = (item) => {

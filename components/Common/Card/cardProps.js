@@ -1,46 +1,34 @@
 export default {
-  dataTitle: {
-    type: String,
-    default: "",
-  },
-  dataDetail: {
-    type: [Number, String],
-    required: true,
-  },
-  viewDetail: {
-    type: String,
-    default: "",
-  },
-  dataIcon: {
-    type: String,
-    default: "",
-  },
-  iconSrc: {
-    type: String,
-    default: "",
-  },
-  hasIcon: {
-    type: Boolean,
-    default: false,
-  },
-  iconSize: {
-    type: Number,
-    default: 24,
-  },
-  hasDetail: {
-    type: Boolean,
-    default: false,
-  },
-  width: {
-    type: String,
-    default: "100%",
-  },
-  minHeight: {
-    type: String,
-    default: "152px",
-  },
   title: {
     type: String,
     default: "",
+  },
+  detail: {
+    type: [Number, String],
+    required: true,
+  },
+  detailIcon: {
+    type: Boolean,
+    required: false,
+  },
+  hasDetail: {
+    type: Boolean,
+    required: false,
+  },
+  width: {
+    type: [String, Number],
+    default: "100%",
+  },
+  minHeight: {
+    type: [String, Number],
+    default: 152,
+  },
+  data: {
+    type: Array,
+    default: () => [],
+  },
+  specialKeys: {
+    type: Array,
+    default: () => [],
   },
 };

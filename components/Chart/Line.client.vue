@@ -1,10 +1,9 @@
 <template>
-  <div class="chart">
+  <div class="chart" :style="{ height: cardHeight }">
     <apexchart
-      type="area"
-      height="388"
+      :height="chartHeight"
       :options="chartOptions"
-      :series="series"
+      :series="chartData"
     />
   </div>
 </template>
@@ -15,16 +14,23 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  series: {
+  chartData: {
     type: Array,
     required: true,
+  },
+  chartHeight: {
+    type: Number,
+    default: 388,
+  },
+  cardHeight: {
+    type: Number,
+    default: 445,
   },
 });
 </script>
 
 <style lang="scss" scoped>
 .chart {
-  height: 445px;
   padding: 20px;
   border-radius: 10px;
   box-shadow: none;

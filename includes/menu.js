@@ -1,15 +1,15 @@
 export default [
   {
-    routeName: "Dashboard",
+    title: "Dashboard",
     icon: "mdi-view-dashboard",
     value: "dashboard",
-    route: "/",
+    to: "/",
   },
 
   {
-    routeName: "Teams",
+    title: "Teams",
     icon: "mdi-account-multiple",
     value: "teams",
-    route: "/teams",
+    to: "/teams",
   },
 ];

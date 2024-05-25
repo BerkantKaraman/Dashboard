@@ -3,7 +3,13 @@
     <v-list density="comfortable" class="pb-6">
       <v-list-item>
         <template v-slot:prepend>
-          <v-img :width="150" aspect-ratio="16/9" cover src="/image/logo.png" />
+          <v-img
+            :width="150"
+            :height="38"
+            aspect-ratio="16/9"
+            cover
+            src="/image/logo.png"
+          />
         </template>
       </v-list-item>
     </v-list>
@@ -13,12 +19,10 @@
     <v-list density="compact" class="pt-10">
       <v-list-item
         v-for="menuItem in menu"
-        :key="menuItem"
-        :value="menuItem.value"
-        :to="menuItem.route"
-        :title="menuItem.routeName"
+        :key="menuItem.value"
+        v-bind="menuItem"
         :min-height="50"
-        color="primary "
+        color="primary"
         class="mb-2 rounded-lg"
       >
         <template v-slot:prepend>

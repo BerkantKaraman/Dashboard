@@ -2,7 +2,7 @@ import moment from "moment";
 
 export default {
   async fetchData(isRefresh) {
-    if (!isRefresh && this.payload) return;
+    if (!isRefresh && this.lastUpdatedAt) return;
 
     try {
       const api = useNuxtApp().$api;
@@ -11,7 +11,7 @@ export default {
       } = await api.get("/case/dashboard");
       this.payload = data;
 
-      this.lastUpdated = moment(new Date()).format("HH:mm");
+      this.lastUpdatedAt = moment(new Date()).format("HH:mm");
     } catch (err) {
       console.log(err);
     }

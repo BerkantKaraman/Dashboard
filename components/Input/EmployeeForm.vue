@@ -5,9 +5,7 @@
     </template>
     <template v-slot:default="{ isActive }">
       <v-card width="100%" height="100%" class="pa-6">
-        <v-card-title
-          class="d-flex justify-space-between align-center pa-4 text-color"
-        >
+        <v-card-title>
           Please enter the employee's information
           <v-btn
             elevation="0"
@@ -24,7 +22,7 @@
               md="6"
             >
               <v-text-field
-                v-model="teamPayload[field.key]"
+                v-model="employeePayload[field.key]"
                 :rules="[rules[field.key]]"
                 :label="field.placeholder"
                 required
@@ -57,7 +55,7 @@ import resetObjectValues from "~/utils/resetObject";
 const loading = ref(false);
 const isOpen = ref(false);
 
-const teamPayload = ref({
+const employeePayload = ref({
   first_name: "",
   last_name: "",
   email: "",
@@ -89,10 +87,10 @@ const rules = {
 
 const hasError = computed(() => {
   return (
-    rules.first_name(teamPayload.value.first_name) !== true ||
-    rules.last_name(teamPayload.value.last_name) !== true ||
-    rules.email(teamPayload.value.email) !== true ||
-    rules.title(teamPayload.value.title) !== true
+    rules.first_name(employeePayload.value.first_name) !== true ||
+    rules.last_name(employeePayload.value.last_name) !== true ||
+    rules.email(employeePayload.value.email) !== true ||
+    rules.title(employeePayload.value.title) !== true
   );
 });
 
@@ -101,12 +99,23 @@ const handleAdd = () => {
   setTimeout(() => {
     loading.value = false;
     isOpen.value = false;
-    toast.success("toastify success", {
-      theme: "colored",
-      type: "success",
-    });
+    toast.success(
+      `New employee added to team: ${employeePayload.value.first_name} ${employeePayload.value.last_name}`,
+      {
+        theme: "colored",
+        type: "success",
+      }
+    );
 
-    teamPayload.value = resetObjectValues(teamPayload.value);
+    employeePayload.value = resetObjectValues(employeePayload.value);
   }, 1000);
 };
 </script>
+
+<style lang="scss" scoped>
+.v-card-title {
+  color: $text-color;
+  @include space-between;
+  font-size: 16px;
+}
+</style>

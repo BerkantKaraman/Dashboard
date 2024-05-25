@@ -3,13 +3,15 @@
     <v-table density="comfortable">
       <thead class="text-color">
         <tr>
-          <th v-for="header in headers" :key="header">{{ header.title }}</th>
+          <th v-for="header in headers" :key="header.title">
+            {{ header.title }}
+          </th>
         </tr>
       </thead>
       <tbody class="text-color">
         <tr v-for="item in tableData" :key="item.skill">
           <td>{{ item.skill }}</td>
-          <td style="text-align: center">{{ item.employees }}</td>
+          <td class="text-center">{{ item.employees }}</td>
         </tr>
       </tbody>
     </v-table>

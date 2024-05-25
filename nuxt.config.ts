@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   sourcemap: {
     server: false,
     client: false,
-  },
+  }, // sourcemap turned to false due to this issue: https://github.com/nuxt/nuxt/issues/15412
 
   devtools: { enabled: true },
 
@@ -24,10 +24,9 @@ export default defineNuxtConfig({
           })
         );
       });
-    },
-    "@nuxtjs/google-fonts",
-    "@nuxt/image",
-    "@pinia/nuxt",
+    }, //https://vuetifyjs.com/en/getting-started/installation/#using-nuxt-3
+    "@nuxtjs/google-fonts", //https://google-fonts.nuxtjs.org/
+    "@pinia/nuxt", //https://pinia.vuejs.org/ssr/nuxt.html
   ],
 
   css: [
@@ -38,16 +37,26 @@ export default defineNuxtConfig({
 
   googleFonts: {
     families: {
-      Poppins: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+      Poppins: [500, 600, 700],
     },
   },
 
   app: {
     pageTransition: { name: "page", mode: "out-in" },
+    head: {
+      charset: "utf-8",
+      viewport: "width=device-width, initial-scale=1",
+    },
   },
 
   build: {
     transpile: ["vuetify"],
+  },
+
+  runtimeConfig: {
+    public: {
+      API_BASE_URL: process.env.API_BASE_URL,
+    },
   },
 
   vite: {

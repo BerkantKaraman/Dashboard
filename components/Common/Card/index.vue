@@ -1,44 +1,33 @@
 <template>
   <v-card :width="width" :min-height="minHeight">
-    <v-card-title> {{ dataTitle }} </v-card-title>
-    <div class="v-card-inner">
-      <CommonCardDetail
-        :detail="dataDetail"
-        :has-icon="hasIcon"
-        :icon-size="iconSize"
-        :icon-src="dataIcon"
-      />
-      <v-dialog max-width="50%" max-height="100%">
-        <template v-slot:activator="{ props: activatorProps }">
-          <CommonViewDetail
-            v-bind="activatorProps"
-            :view-detail="viewDetail"
-            :icon-src="iconSrc"
-          />
-        </template>
-
-        <template v-slot:default="{ isActive }">
-          <v-card class="pa-10">
-            <div class="v-card-inner">
-              <v-card-title class="text-color"> {{ title }} </v-card-title>
-              <v-btn
-                elevation="0"
-                icon="mdi-close"
-                @click="isActive.value = false"
-              />
-            </div>
-            <slot />
-          </v-card>
-        </template>
-      </v-dialog>
+    <v-card-title> {{ title }} </v-card-title>
+    <div class="inner">
+      <div class="detail">
+        {{ detail }}
+        <v-icon v-if="detailIcon" icon="mdi-star" :size="25" />
+      </div>
+      <CommonCardModal v-if="hasDetail" :title>
+        <v-data-table
+          :headers="headers"
+          :items="data"
+          hide-default-footer
+          class="text-color"
+        />
+      </CommonCardModal>
     </div>
   </v-card>
 </template>
 
 <script setup>
-import cardProps from "./cardProps";
+import cardProps from "~/components/Common/Card/cardProps";
+import generateHeader from "~/utils/generateHeader";
 
 const props = defineProps(cardProps);
+
+const headers = generateHeader({
+  guideData: props.data[0] ?? null,
+  specialKeys: props.specialKeys,
+});
 </script>
 
 <style lang="scss" scoped>
@@ -58,8 +47,17 @@ const props = defineProps(cardProps);
     padding: 0;
   }
 
-  &-inner {
+  .inner {
     @include space-between;
+
+    .detail {
+      @include center-both;
+      width: max-content;
+      gap: 6px;
+      font-size: 36px;
+      font-weight: 600;
+      color: $primary;
+    }
   }
 }
 </style>

@@ -1,14 +1,9 @@
 // base
 
-$primary: var(--primary);
-$text-color: var(--text-color);
-$muted-color: #cccccc;
+$primary: #0c615e;
+$text-color: #343434;
+$muted-color: #ccc;
 $text-background: #edf6f2;
 $background-color: #fbfbfb;
 $white: #fff;
 $font-family-sans-serif: "Poppins", sans-serif;
-
-:root {
-  --primary: #0c615e;
-  --text-color: #343434;
-}

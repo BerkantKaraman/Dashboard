@@ -5,9 +5,7 @@
     </template>
     <template v-slot:default="{ isActive }">
       <v-card width="100%" height="100%" class="py-4 pa-4">
-        <v-card-title
-          class="d-flex justify-space-between align-center text-color"
-        >
+        <v-card-title :size="16">
           Please enter the team's information
           <v-btn
             elevation="0"
@@ -26,6 +24,11 @@
                 color="primary"
                 variant="outlined"
               />
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col cols="12">
               <v-textarea
                 v-model="teamPayload.description"
                 :rules="[rules.description]"
@@ -84,7 +87,7 @@ const handleAdd = () => {
   loading.value = true;
   setTimeout(() => {
     loading.value = false;
-    toast.success("toastify success", {
+    toast.success(`New Team created: ${teamPayload.value.team_title}`, {
       theme: "colored",
       type: "success",
     });
@@ -94,3 +97,11 @@ const handleAdd = () => {
   }, 1000);
 };
 </script>
+
+<style lang="scss" scoped>
+.v-card-title {
+  color: $text-color;
+  @include space-between;
+  font-size: 16px;
+}
+</style>

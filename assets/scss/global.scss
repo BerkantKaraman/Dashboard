@@ -16,12 +16,36 @@ body {
   padding: 0;
 }
 
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.1s;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+
 .text-color {
-  color: var(--text-color) !important;
+  color: $text-color !important;
 }
 
 .page-header {
-  color: var(--text-color) !important;
+  color: $text-color !important;
   font-weight: 500;
   font-size: 40px;
+}
+
+.Toastify__toast {
+  width: max-content;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
