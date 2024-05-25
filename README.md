@@ -52,8 +52,6 @@ pnpm run build
 # yarn
 yarn build
 
-# bun
-bun run build
 ```
 
 Locally preview production build:
