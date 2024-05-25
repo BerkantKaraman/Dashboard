@@ -1,6 +1,28 @@
-# Nuxt 3 Minimal Starter
+# Demo Task for TrainIQ
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Project Overview
+
+This project is a Dashboard UI page created using Nuxt 3. It consumes backend data from a learning platform of a fictional company. The dashboard displays various statistics and details about teams, employees, courses, and exams.
+
+## Demo
+
+You can view the live demo of the project [here](https://train-iq-otrb.vercel.app/).
+
+## Features
+
+- Displays statistics and details about teams, employees, courses, and exams.
+- Uses charts, icons, animations for data visualization.
+- Includes two dummy buttons: "Create New Team" and "Add New Employee to a Team".
+
+## Technologies Used
+
+- **Framework:** Nuxt 3
+- **Language:** JavaScript
+- **Styling:** CSS/SCSS
+- **Charts:** [APEXCHARTS.JS](https://apexcharts.com/)
+- **Deployment:** [Vercel](https://vercel.com/)
+
+
 
 ## Setup
 
