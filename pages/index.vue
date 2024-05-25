@@ -55,6 +55,7 @@ const cardData = ref([
     detail: data.in_progress_courses.length,
     hasDetail: true,
     data: data.in_progress_courses,
+    specialKeys: ["assigned_to", "due_date"],
   },
   {
     title: "Total Completed Courses",
