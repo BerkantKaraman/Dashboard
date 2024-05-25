@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer :width="256" class="px-7 pt-7">
+  <v-navigation-drawer v-model="drawer" :width="256" class="px-7 pt-7">
     <v-list density="comfortable" class="pb-6">
       <v-list-item>
         <template v-slot:prepend>
@@ -32,8 +32,24 @@
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
+
+  <v-toolbar color="transparent">
+    <v-app-bar-nav-icon
+      class="hidden-lg-and-up"
+      @click.stop="drawer = !drawer"
+    />
+  </v-toolbar>
 </template>
 
 <script setup>
 import menu from "~/includes/menu";
+import { useDisplay } from "vuetify";
+
+const display = ref(useDisplay());
+
+const drawer = ref(false);
+
+const isOpen = computed(() => {
+  return display.value.lgAndUp ? (drawer.value = true) : false;
+});
 </script>
