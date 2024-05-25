@@ -15,6 +15,7 @@ function generateHeader({
       const header = {
         value: key,
         title: startCase(key),
+        sortable: true,
       };
 
       if (specialKeys.includes(key)) {

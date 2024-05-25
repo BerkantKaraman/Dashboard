@@ -55,7 +55,7 @@ const cardData = ref([
     detail: data.in_progress_courses.length,
     hasDetail: true,
     data: data.in_progress_courses,
-    specialKeys: ["assigned_to", "due_date"],
+    specialKeys: ["assigned_to", "due_date", "status"],
   },
   {
     title: "Total Completed Courses",
@@ -66,7 +66,7 @@ const cardData = ref([
     detail: data.upcoming_courses.length,
     hasDetail: true,
     data: data.upcoming_courses,
-    specialKeys: ["assigned_to", "due_date"],
+    specialKeys: ["assigned_to", "due_date", "status"],
   },
   {
     title: "Total Employees",
