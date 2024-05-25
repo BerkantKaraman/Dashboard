@@ -9,6 +9,7 @@
             aspect-ratio="16/9"
             cover
             src="/image/logo.png"
+            alt="logo"
           />
         </template>
       </v-list-item>

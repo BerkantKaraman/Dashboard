@@ -1,9 +1,9 @@
 <template>
   <v-dialog max-width="50%" max-height="100%">
     <template v-slot:activator="{ props: activatorProps }">
-      <div class="view-more" v-bind="activatorProps">
-        <div class="view-more-text">View detail</div>
-        <div class="view-more-icon">
+      <div class="view-detail" v-bind="activatorProps">
+        <div class="view-detail-text">View detail</div>
+        <div class="view-detail-icon">
           <v-icon icon="mdi-arrow-right" :size="16" />
         </div>
       </div>
