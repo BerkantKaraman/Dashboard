@@ -34,7 +34,7 @@
         <v-card-text class="text-color">{{ description }}</v-card-text>
         <div class="d-flex align-center justify-space-between">
           <v-card-title> Employees </v-card-title>
-          <InputEmployeeForm />
+          <InputEmployeeForm :team-name="title" />
         </div>
         <v-card-text>
           <v-data-table

@@ -52,6 +52,13 @@ import { toast } from "vue3-toastify";
 import employeeForm from "~/includes/form/employeeForm";
 import resetObjectValues from "~/utils/resetObject";
 
+const props = defineProps({
+  teamName: {
+    type: String,
+    default: "",
+  },
+});
+
 const loading = ref(false);
 const isOpen = ref(false);
 
@@ -100,7 +107,7 @@ const handleAdd = () => {
     loading.value = false;
     isOpen.value = false;
     toast.success(
-      `New employee added to team: ${employeePayload.value.first_name} ${employeePayload.value.last_name}`,
+      `New employee added to ${props.teamName} team: ${employeePayload.value.first_name} ${employeePayload.value.last_name}`,
       {
         theme: "colored",
         type: "success",
