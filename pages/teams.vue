@@ -122,7 +122,7 @@ const refresh = async () => {
 
 <style lang="scss" scoped>
 .teams {
-  padding: 16px 16px;
+  padding: 0 16px 16px 16px;
 
   .header {
     @include space-between;

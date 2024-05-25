@@ -115,7 +115,7 @@ const refresh = async () => {
 
 <style lang="scss" scoped>
 .dashboard {
-  padding: 16px 16px;
+  padding: 0 16px 16px 16px;
 
   .header {
     @include space-between;
@@ -157,40 +157,40 @@ const refresh = async () => {
       display: flex;
       flex-wrap: wrap;
     }
-  }
 
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-top: 15px;
-
-    @include devices(md) {
-      display: flex;
-      flex-wrap: wrap;
-    }
-  }
-
-  .card {
-    margin-top: 18px;
-
-    @include devices(md) {
-      margin-top: 0;
-    }
-  }
-
-  .left {
-    @include devices(md) {
-      width: 100%;
-    }
-  }
-
-  .right {
-    @include devices(md) {
-      display: flex;
-      flex-direction: column-reverse;
-      width: 100%;
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
+      margin-top: 15px;
+
+      @include devices(md) {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+
+    .card {
+      margin-top: 18px;
+
+      @include devices(md) {
+        margin-top: 0;
+      }
+    }
+
+    .left {
+      @include devices(md) {
+        width: 100%;
+      }
+    }
+
+    .right {
+      @include devices(md) {
+        display: flex;
+        flex-direction: column-reverse;
+        width: 100%;
+        gap: 1rem;
+      }
     }
   }
 }

@@ -41,11 +41,11 @@ const headers = generateHeader({
   background-color: $white;
   border: 1px solid $muted-color;
   border-radius: 10px;
-}
 
-th:last-child {
-  @include devices(md) {
-    text-align: center !important;
+  th:last-child {
+    @include devices(md) {
+      text-align: center !important;
+    }
   }
 }
 </style>
