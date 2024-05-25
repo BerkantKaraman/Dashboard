@@ -118,7 +118,7 @@ const refresh = async () => {
 <style lang="scss" scoped>
 .dashboard {
   @include devices(md) {
-    padding: 0 16px;
+    padding: 0 16px 16px 16px;
   }
 
   .header {
