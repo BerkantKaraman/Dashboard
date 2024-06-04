@@ -110,6 +110,6 @@ const handleAdd = () => {
   color: $text-color;
   @include space-between;
   font-size: 16px;
-  text-wrap: wrap;
+  white-space: normal; 
 }
 </style>
