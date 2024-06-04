@@ -6,7 +6,7 @@ This project is a Dashboard UI page created using Nuxt 3. It consumes backend da
 
 ## Demo
 
-You can view the live demo of the project [here](https://train-iq-otrb.vercel.app/).
+You can view the live demo of the project [here](https://kaabist-dashboard.vercel.app).
 
 ## Features
 
