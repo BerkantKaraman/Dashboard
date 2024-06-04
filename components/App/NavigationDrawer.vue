@@ -5,10 +5,10 @@
         <template v-slot:prepend>
           <v-img
             :width="150"
-            :height="38"
+            :height="40"
             aspect-ratio="16/9"
             cover
-            src="/image/logo.png"
+            src="/image/logo-black.svg"
             alt="logo"
           />
         </template>
