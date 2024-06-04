@@ -1,4 +1,4 @@
-# Demo for TrainIQ task
+# Demo Dashboard
 
 ## Project Overview
 
