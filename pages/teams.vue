@@ -3,7 +3,7 @@
     <div class="teams">
       <div class="header">
         <div class="page-header pb-4">Teams</div>
-        <div class="refresh">
+        <!--  <div class="refresh">
           Last updated at: {{ appStore.lastUpdatedAt }}
           <v-icon
             icon="mdi-refresh"
@@ -11,7 +11,7 @@
             :class="['refresh-icon', { loading }]"
             @click="refresh"
           />
-        </div>
+        </div> -->
       </div>
       <div class="d-flex justify-end py-4">
         <InputTeamForm />
