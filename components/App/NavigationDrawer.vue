@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer v-model="drawer" :width="256" class="px-7 pt-7">
     <v-list density="comfortable" class="pb-6">
-      <v-list-item>
+      <v-list-item href="/" link>
         <template v-slot:prepend>
           <v-img
             :width="150"
